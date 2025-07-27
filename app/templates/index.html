@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>VLR Scoreboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .match { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .team { display: inline-block; width: 45%; text-align: center; }
+        .score { font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <h1>Live Valorant Matches</h1>
+    {% if matches %}
+        {% for m in matches %}
+        <div class="match">
+            <div class="team">
+                <img src="{{ m.team1_logo }}" alt="{{ m.team1 }}" width="50" height="50"><br>
+                <strong>{{ m.team1 }}</strong>
+            </div>
+            <span class="score">{{ m.score1 }} - {{ m.score2 }}</span>
+            <div class="team">
+                <img src="{{ m.team2_logo }}" alt="{{ m.team2 }}" width="50" height="50"><br>
+                <strong>{{ m.team2 }}</strong>
+            </div>
+            <div>
+                <em>{{ m.match_event }}</em> - Map {{ m.map_number }}: {{ m.current_map }}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No live matches at the moment.</p>
+    {% endif %}
+</body>
+</html>
